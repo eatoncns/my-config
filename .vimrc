@@ -8,6 +8,9 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-surround'
 Plugin 'jiangmiao/auto-pairs'
@@ -31,7 +34,12 @@ let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" search for visually hightlighted text
+" Nerd Tree
+map <C-n> :NERDTreeToggle<CR>
+"  close vim if only nerd tree open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Search for visually hightlighted text
 vnoremap <c-f> y<ESC>/<c-r>"<CR>
 
 " Turn on syntax highlighting
@@ -127,6 +135,12 @@ nnoremap <C-l> <C-w>l
 " Escaping
 inoremap jj <esc>
 
+" New line
+nmap <C-o> O<Esc>j
+
 " Saving
 nnoremap <leader>s :w<cr>
 inoremap <leader>s <C-c>:w<cr>
+
+" Find and replace
+nnoremap <leader>r :%s/\<<C-r><C-w>\>/
