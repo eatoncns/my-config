@@ -13,6 +13,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tpope/vim-endwise'
 Plugin 'tpope/vim-surround'
+Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'w0rp/ale'
 Plugin 'Valloric/YouCompleteMe'
@@ -20,7 +21,9 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'ElmCast/elm-vim'
+Plugin 'pangloss/vim-javascript'
 Bundle 'vim-ruby/vim-ruby'
+Plugin 'ctrlpvim/ctrlp.vim'
 call vundle#end()
 
 " Elm
@@ -144,3 +147,8 @@ inoremap <leader>s <C-c>:w<cr>
 
 " Find and replace
 nnoremap <leader>r :%s/\<<C-r><C-w>\>/
+
+" Strip whitespace on save
+autocmd FileType elixir autocmd BufEnter <buffer> EnableStripWhitespaceOnSave
+
+hi Search cterm=NONE ctermfg=grey ctermbg=blue
