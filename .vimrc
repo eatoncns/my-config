@@ -24,6 +24,8 @@ Plugin 'ElmCast/elm-vim'
 Plugin 'pangloss/vim-javascript'
 Bundle 'vim-ruby/vim-ruby'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'fatih/vim-go'
 call vundle#end()
 
 " Elm
@@ -41,6 +43,10 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 map <C-n> :NERDTreeToggle<CR>
 "  close vim if only nerd tree open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Rainbow parentheses
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
 
 " Search for visually hightlighted text
 vnoremap <c-f> y<ESC>/<c-r>"<CR>
@@ -152,3 +158,8 @@ nnoremap <leader>r :%s/\<<C-r><C-w>\>/
 autocmd FileType elixir autocmd BufEnter <buffer> EnableStripWhitespaceOnSave
 
 hi Search cterm=NONE ctermfg=grey ctermbg=blue
+
+" Go shortcuts
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>x <Plug>(go-alternate-split)
+au FileType go nmap <leader>v <Plug>(go-alternate-vertical)
