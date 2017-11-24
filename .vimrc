@@ -28,12 +28,6 @@ Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'fatih/vim-go'
 call vundle#end()
 
-" Elm
-let g:ycm_semantic_triggers = {
-     \ 'elm' : ['.'],
-     \}
-let g:elm_format_autosave = 1
-
 " Ultisnips config
 let g:UltiSnipsExpandTrigger="<c-k>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -44,10 +38,6 @@ map <C-n> :NERDTreeToggle<CR>
 "  close vim if only nerd tree open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Rainbow parentheses
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-
 " Search for visually hightlighted text
 vnoremap <c-f> y<ESC>/<c-r>"<CR>
 
@@ -56,9 +46,6 @@ syntax on
 
 " For plugins to load correctly
 filetype plugin indent on
-
-" TODO: Pick a leader key
-" let mapleader = ","
 
 " Security
 set modelines=0
@@ -95,6 +82,8 @@ runtime! macros/matchit.vim
 nnoremap j gj
 nnoremap k gk
 
+set pastetoggle=<F2>
+
 " Allow hidden buffers
 set hidden
 
@@ -122,8 +111,6 @@ map <leader><space> :let @/=''<cr> " clear search
 inoremap <F1> <ESC>:set invfullscreen<CR>a
 nnoremap <F1> :set invfullscreen<CR>
 vnoremap <F1> :set invfullscreen<CR>
-
-" Textmate holdouts
 
 " Formatting
 map <leader>q gqip
@@ -163,3 +150,13 @@ hi Search cterm=NONE ctermfg=grey ctermbg=blue
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>x <Plug>(go-alternate-split)
 au FileType go nmap <leader>v <Plug>(go-alternate-vertical)
+
+" Rainbow parentheses
+au FileType clojure VimEnter * RainbowParenthesesToggle
+au FileType clojure Syntax * RainbowParenthesesLoadRound
+
+" Elm
+let g:ycm_semantic_triggers = {
+     \ 'elm' : ['.'],
+     \}
+let g:elm_format_autosave = 1
